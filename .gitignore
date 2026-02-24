@@ -1,0 +1,28 @@
+# Local terraform directories
+**/.terraform/*
+
+# .tfstate files (since we use a remote backend, these shouldn't be local)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files by default for security
+# (You should pass secrets via environment variables or GitHub Secrets)
+*.tfvars
+*.tfvars.json
+
+# Exclude variables files that might contain secrets
+.terraform.lock.hcl
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
