@@ -36,6 +36,11 @@ variable "acr_name" {
 }
 
 # Database Variables
+variable "sql_location" {
+  type        = string
+  description = "Region for the SQL Database"
+}
+
 variable "sql_server_name" {
   type = string
 }

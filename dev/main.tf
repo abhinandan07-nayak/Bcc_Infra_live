@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 module "network" {
-  source        = "git::git@github.com:hajatnj/infra-modules.git//networking?ref=v1.0.7"
+  source        = "git::git@github.com:hajatnj/infra-modules.git//networking?ref=v1.0.9"
   vnet_name     = var.vnet_name
   address_space = var.vnet_address_space
   location      = var.location
@@ -11,7 +11,7 @@ module "network" {
 }
 
 module "aks" {
-  source       = "git::git@github.com:hajatnj/infra-modules.git//aks?ref=v1.0.7"
+  source       = "git::git@github.com:hajatnj/infra-modules.git//aks?ref=v1.0.9"
   cluster_name = var.cluster_name
   location     = var.location
   rg_name       = var.resource_group_name
@@ -21,17 +21,17 @@ module "aks" {
 }
 
 module "acr" {
-  source   = "git::git@github.com:hajatnj/infra-modules.git//acr?ref=v1.0.7"
+  source   = "git::git@github.com:hajatnj/infra-modules.git//acr?ref=v1.0.9"
   acr_name = var.acr_name
   location = var.location
   rg_name  = var.resource_group_name
 }
 
 module "database" {
-  source         = "git::git@github.com:hajatnj/infra-modules.git//database?ref=v1.0.7"
+  source         = "git::git@github.com:hajatnj/infra-modules.git//database?ref=v1.0.9"
   server_name    = var.sql_server_name
   db_name        = var.sql_db_name
-  location       = var.location
+  location       = var.sql_location
   rg_name        = var.resource_group_name
   admin_login    = var.sql_admin_login
   admin_password = var.sql_admin_password
@@ -40,7 +40,7 @@ module "database" {
 # --- Role Assignments ---
 
 resource "azurerm_role_assignment" "aks_network" {
-  scope                = "/subscriptions/YOUR_SUB_ID/resourceGroups/${var.resource_group_name}"
+  scope                = "/subscriptions/ddf38550-6d2b-44b2-b853-bcbe2eb8c2b5/resourceGroups/${var.resource_group_name}"
   role_definition_name = "Network Contributor"
   principal_id         = module.aks.principal_id
 }
