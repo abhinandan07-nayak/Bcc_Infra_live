@@ -1,0 +1,25 @@
+# --- Terraform Local Folders ---
+.terraform/
+.terraform.lock.hcl
+
+# --- Terraform State Files ---
+# These should stay in your Azure Storage backend, never in Git
+*.tfstate
+*.tfstate.*
+
+# --- Variables and Secrets ---
+# This prevents your sql_admin_password from being pushed to GitHub
+*.tfvars
+*.tfvars.json
+
+# --- Plan Files ---
+# Prevents your 'main.tfplan' from being pushed
+*.tfplan
+
+# --- Log Files ---
+crash.log
+*.log
+
+# --- OS Specific Files ---
+.DS_Store
+Thumbs.db
