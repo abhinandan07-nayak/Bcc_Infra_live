@@ -3,8 +3,8 @@ provider "azurerm" {
 }
 
 module "network" {
-  # Add //infra-modules/ before the module name
-  source        = "git::ssh://git@github.com/abhinandan07-nayak/Bcc_Terraform_Infra_Module.git//infra-modules/networking?ref=main"
+  # Change hajatnj to abhinandan07-nayak
+  source = "git::https://github.com/abhinandan07-nayak/Bcc_Terraform_Infra_Module.git//infra-modules/networking?ref=main"
   vnet_name     = var.vnet_name
   address_space = var.vnet_address_space
   location      = var.location
@@ -12,7 +12,7 @@ module "network" {
 }
 
 module "aks" {
-  source       = "git::ssh://git@github.com/abhinandan07-nayak/Bcc_Terraform_Infra_Module.git//infra-modules/aks?ref=main"
+  source = "git::https://github.com/abhinandan07-nayak/Bcc_Terraform_Infra_Module.git//infra-modules/aks?ref=main"
   cluster_name = var.cluster_name
   location     = var.location
   rg_name      = var.resource_group_name
@@ -20,7 +20,6 @@ module "aks" {
   vm_size      = var.aks_vm_size
   node_count   = var.aks_node_count
 }
-
 module "acr" {
   source   = "git::ssh://git@github.com/abhinandan07-nayak/Bcc_Terraform_Infra_Module.git//infra-modules/acr?ref=main"
   acr_name = var.acr_name
@@ -41,6 +40,7 @@ module "database" {
 # --- Role Assignments ---
 
 resource "azurerm_role_assignment" "aks_network" {
+  # Use YOUR ID: 5b74fea2-5e51-4af1-b70d-6657c89c1251
   scope                = "/subscriptions/5b74fea2-5e51-4af1-b70d-6657c89c1251/resourceGroups/${var.resource_group_name}"
   role_definition_name = "Network Contributor"
   principal_id         = module.aks.principal_id
